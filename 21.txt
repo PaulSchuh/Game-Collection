@@ -6,7 +6,7 @@ The player who reaches a number 21 or higher first, looses.
 //The computer player
 
 function ai(aiNumber) {
-    alert("Bot is playing...");
+    
     switch(aiNumber) {
         case 1:
         return 3;
@@ -114,7 +114,7 @@ function endGame(endnumber, winner) {
 function main() {
     while (true) {
         var number = 0;
-        var begin = confirm("Do you want to start?<br>Press cancel to let the bot begin");
+        var begin = confirm("Do you want to start?");
         if (begin) {
             while (number < 21) {                
                 number += player();
@@ -136,3 +136,5 @@ function main() {
         }
     }
 }
+
+setTimeout(main, 1500);
