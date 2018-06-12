@@ -6,15 +6,16 @@ The player who reaches a number 21 or higher first, looses.
 //The computer player
 
 function ai(number) {
-    var left = 20%number;
     var aiTurn = 1;
-    if (left == 0 || number == 0) {
-        var a = Math.random();
-        var b = Math.random();
-        return aiTurn+a+b;
+    if (number%4 == 0 || number == 0) {
+        var a = Math.round(Math.random());;
+        var b = Math.round(Math.random());;
+        return aiTurn;
     }
     //The trick to win is to always be on a number that can be divided by 4
-    aiTurn = 4-left;
+    for (var i = 1; (number+aiTurn)%4==0; i++) {
+        aiTurn++;
+    }
     return aiTurn;
 }
 
@@ -40,17 +41,21 @@ function main() {
     var begin = confirm("Do you want to start?");
     if (begin) {
         while (number < 21) {
-            number = player(number);
-            number = ai(number);
+            number += player(number);
+            number += ai(number);
         }
     } else {
         while (number < 21) {
-            number = ai(number);
-            number = player(number);
+            number += ai(number);
+            number += player(number);
         }
     }
     var again = alert("Do you want to play again?");
     if (again) {
         main();
+    } else {
+        exit();
     }
 }
+
+main();
