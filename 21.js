@@ -3,6 +3,13 @@ Description: A simple and fun logic game. Two players count up. Per turn they ha
 The player who reaches a number 21 or higher first, looses.
 */
 
+//function for random number
+function randInt(min, max) {
+
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+
 //The computer player
 
 function ai(aiNumber) {
@@ -15,8 +22,7 @@ function ai(aiNumber) {
         case 3:
         return 1;
         case 4:
-        var a = Math.round(Math.random());
-        var b = Math.round(Math.random());
+        randInt(1,3);
         return 1+a+b;
         case 5:
         return 3;
@@ -25,8 +31,7 @@ function ai(aiNumber) {
         case 7:
         return 1;
         case 8:
-        var a = Math.round(Math.random());
-        var b = Math.round(Math.random());
+        randInt(1,3);
         return 1+a+b;
         case 9:
         return 3;
@@ -35,8 +40,7 @@ function ai(aiNumber) {
         case 11:
         return 1;
         case 12:
-        var a = Math.round(Math.random());
-        var b = Math.round(Math.random());
+        randInt(1,3);
         return 1+a+b;
         case 13:
         return 3;
@@ -45,8 +49,7 @@ function ai(aiNumber) {
         case 15:
         return 1;
         case 16:
-        var a = Math.round(Math.random());
-        var b = Math.round(Math.random());
+        randInt(1,3);
         return 1+a+b;
         case 17:
         return 3;
@@ -55,12 +58,10 @@ function ai(aiNumber) {
         case 19:
         return 1;
         case 20:
-        var a = Math.round(Math.random());
-        var b = Math.round(Math.random());
+        randInt(1,3);
         return 1+a+b;
         case 0:
-        var a = Math.round(Math.random());
-        var b = Math.round(Math.random());
+        randInt(1,3);
         return 1+a+b;
     }
 //The trick to win is to always be on a number that can be divided by 4
