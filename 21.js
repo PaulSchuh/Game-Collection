@@ -13,57 +13,18 @@ function randInt(min, max) {
 //The computer player
 
 function ai(aiNumber) {
+    var numToReach=gameLimit-1;
     alert("Bot is playing...");
-    switch(aiNumber) {
-        case 1:
-        return 3;
-        case 2:
-        return 2;
-        case 3:
-        return 1;
-        case 4:
-        randInt(1,3);
-        return 1+a+b;
-        case 5:
-        return 3;
-        case 6:
-        return 2;
-        case 7:
-        return 1;
-        case 8:
-        randInt(1,3);
-        return 1+a+b;
-        case 9:
-        return 3;
-        case 10:
-        return 2;
-        case 11:
-        return 1;
-        case 12:
-        randInt(1,3);
-        return 1+a+b;
-        case 13:
-        return 3;
-        case 14:
-        return 2;
-        case 15:
-        return 1;
-        case 16:
-        randInt(1,3);
-        return 1+a+b;
-        case 17:
-        return 3;
-        case 18:
-        return 2;
-        case 19:
-        return 1;
-        case 20:
-        randInt(1,3);
-        return 1+a+b;
-        case 0:
-        randInt(1,3);
-        return 1+a+b;
+    if (aiNumber != 0 && aiNumber%4 != 0) {
+        while (numToReach>aiNumber) {
+            numToReach-=4;
+        }
+        numToReach+=4;
+        return numToReach-aiNumber;
+    } else {
+        return randInt(1,3);
     }
+    
 //The trick to win is to always be on a number that can be divided by 4
 }
 
@@ -73,7 +34,7 @@ function player() {
     var playerTurn = 1;
     var correctInput = false;
     while (correctInput == false) {
-        var input = prompt("How many steps will you go?", "1, 2, 3"); //ask him by how much he wants to count up
+        var input = prompt("How many steps will you go?", "1, 2, 3"); //ask player by how much he wants to count up
             switch (Number(input)) {
                 case 1:
                 playerTurn = 1;
@@ -96,8 +57,11 @@ function player() {
     }
 }
 
+
+//Some text for the end
+
 function endGame(endnumber, winner) {
-    if (endnumber>20) {
+    if (endnumber>=gameLimit) {
         if (winner == "ai") {
             alert("Oops. You lost!")
         } else if (winner == "player") {
@@ -112,12 +76,16 @@ function endGame(endnumber, winner) {
     }
 }
 
+
+//The game itself
+
 function main() {
+    gameLimit = 21;
     while (true) {
         var number = 0;
-        var begin = confirm("Do you want to start?<br>Press cancel to let the bot begin");
+        var begin = confirm("Do you want to start? Press cancel to let the bot begin");
         if (begin) {
-            while (number < 21) {                
+            while (number < gameLimit) {                
                 number += player();
                 alert("The current number is " + number)
                 endGame(number, "ai");
@@ -126,7 +94,7 @@ function main() {
                 endGame(number, "player");
             }
         } else {
-            while (number < 21) {
+            while (number < gameLimit) {
                 number += ai(number);
                 alert("The current number is " + number)
                 endGame(number, "player");
